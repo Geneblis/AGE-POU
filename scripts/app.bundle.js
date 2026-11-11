@@ -338,7 +338,11 @@ function organize(inputRows, historyStart) {
   checkRequiredMonths(periods, targetYear);
 
   const roots = rows.filter(row => isGroupRoot(row.account));
-  if (roots.length < 2) throw new Error("Os totais principais de receita e despesa não foram encontrados.");
+  for (const group of ["Receita", "Despesa"]) {
+    if (roots.filter(row => row.group === group).length !== 1) {
+      throw new Error(`A base deve conter um único total principal de ${group}.`);
+    }
+  }
   const lastActual = findLastActual(roots, targetYear);
   const availableActualPeriods = periods.filter(period => period <= lastActual);
   const actualPeriods = historyStart === undefined
@@ -756,15 +760,16 @@ const sectorColors = ["#123a5a", "#e47734", "#0c7c75", "#497fa7", "#a65c32", "#6
 // Organograma da AGE, com as raízes primeiro. Cada linha: [id, nome, superiores].
 const ageSectors = [
   ["conad", "CONAD (Conselho de Administração)", []],
-  ["confin", "CONFIN (Conselho Fiscal)", []],
+  ["confin", "CONFI (Conselho Fiscal)", []],
   ["auditoria", "Gerência de Auditoria Interna", []],
   ["cpl", "CPL", []],
+  ["pad", "Comissão PAD", []],
+  ["ouvidoria", "Ouvidoria", []],
   ["presidencia", "Presidência - PRESI", []],
   ["juridica", "Superintendência Jurídica", ["presidencia"]],
   ["comunicacao", "Gerência de Comunicação", ["presidencia"]],
   ["compliance", "Gerência de Compliance e Controles Internos", ["presidencia"]],
   ["governanca", "Secretaria de Governança", ["presidencia"]],
-  ["ouvidoria", "Ouvidoria", ["presidencia"]],
   ["dpg", "Diretoria de Planejamento e Gestão - DIPLAG", ["presidencia"]],
   ["administrativa", "Gerência Administrativa", ["dpg"]],
   ["dados", "Gerência de Planejamento de Dados, Mercado e Orçamento", ["dpg"]],
@@ -789,7 +794,7 @@ function defaultOrganogram(model) {
     links: ageSectors.flatMap(([box]) => [...model.sectors.keys()].map(origin => ({ id: `${box}:${origin}`, box, type: "sector", origin, percent }))) };
 }
 
-// `parent` remains the primary parent for old files; `parents` carries additional direct parents.
+// parent identifica o superior principal; parents reúne os superiores quando há mais de um.
 function parentIds(box) {
   if (Array.isArray(box.parents)) return [...new Set(box.parents)];
   return box.parent === null || box.parent === undefined ? [] : [box.parent];
@@ -830,10 +835,15 @@ function validateOrganogram(input, model) {
   if (input.boxes.length > 500) throw new Error("O organograma aceita no máximo 500 setores.");
   if (input.links.length > 10000) throw new Error("O organograma aceita no máximo 10000 vínculos.");
   const ids = new Set();
+  const names = new Set();
   for (const box of input.boxes) {
     if (!box || typeof box.id !== "string" || !box.id || ids.has(box.id) || typeof box.name !== "string"
       || !box.name.trim() || box.name.length > 120 || (box.parent !== undefined && box.parent !== null && typeof box.parent !== "string")
       || (box.parents !== undefined && !Array.isArray(box.parents))) throw new Error("Setor administrativo inválido ou identificador duplicado.");
+    // Acentos, espaços e maiúsculas não criam um setor diferente.
+    const name = box.name.normalize("NFD").replace(/[\u0300-\u036f]/g, "").trim().replace(/\s+/g, " ").toLowerCase();
+    if (names.has(name)) throw new Error(`Nome de setor administrativo duplicado: ${box.name.trim()}.`);
+    names.add(name);
     const parents = parentIds(box);
     if ((box.parents !== undefined && parents.length !== box.parents.length)
       || (box.parents !== undefined && box.parent !== undefined && box.parent !== null && box.parent !== parents[0])
@@ -2919,10 +2929,8 @@ function normalizeImportedVariables(input) {
   return values.map((item, index) => {
     const cadence = item.cadence ?? (normalizeSearch(item.ritmo) === "anual" ? "annual" : "monthly");
     const scopeText = normalizeSearch(item.scope ?? item.alcance ?? "all");
-    let scope = "all";
-    if (SCOPES.includes(scopeText)) {
-      scope = scopeText;
-    } else if (scopeText === "receita" || scopeText === "despesa") {
+    let scope = scopeText;
+    if (scopeText === "receita" || scopeText === "despesa") {
       scope = "group";
     }
     const variable = {

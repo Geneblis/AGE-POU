@@ -123,22 +123,23 @@ Você pode salvar e abrir os índices em um arquivo separado (JSON).
 Na aba **Organograma Orçamentário**, você diz qual parte da empresa fica com cada receita e despesa.
 
 **Jeito rápido:** clique em **Usar organograma padrão AGE**.
-O site cria os 24 setores da empresa e divide tudo igualmente: cada setor fica com 100 ÷ 24 ≈ 4,17% de cada receita e despesa.
+O site cria os 25 setores da empresa e divide tudo igualmente: cada setor fica com 100 ÷ 25 = 4% de cada receita e despesa.
 
-CONAD, CONFIN, Gerência de Auditoria Interna e CPL são raízes independentes, no mesmo nível da Presidência. A Ouvidoria é filha direta da Presidência. A Gerência de Pequenos Negócios aparece uma vez, sob sua superintendência.
+CONAD, CONFI, Gerência de Auditoria Interna, CPL, Comissão PAD e Ouvidoria são raízes independentes, no mesmo nível da Presidência. A Ouvidoria e a Comissão PAD não têm superior. A Gerência de Pequenos Negócios aparece uma vez, sob sua superintendência.
 
 ```text
 CONAD (Conselho de Administração)
-CONFIN (Conselho Fiscal)
+CONFI (Conselho Fiscal)
 Gerência de Auditoria Interna
 CPL
+Comissão PAD
+Ouvidoria
 
 Presidência - PRESI
     ├── Superintendência Jurídica
     ├── Gerência de Comunicação
     ├── Gerência de Compliance e Controles Internos
     ├── Secretaria de Governança
-    ├── Ouvidoria
     ├── Diretoria de Planejamento e Gestão - DIPLAG
     │   ├── Gerência Administrativa
     │   ├── Gerência de Planejamento de Dados, Mercado e Orçamento

@@ -16,6 +16,8 @@ node scripts/build.mjs
 node --test
 ```
 
+O teste opcional com base real usa o arquivo de `documents/database/orcamento/` quando ele existir no repositório maior. Para conferir a cópia independente com a mesma base, defina `POU_BUDGET_FIXTURE` com o caminho absoluto do arquivo antes de executar `node --test`. A ausência da base é informada como teste ignorado; não equivale a validação dos dados reais.
+
 O servidor local abre em `http://127.0.0.1:4173`. O planejador também funciona ao abrir seu `index.html` diretamente.
 
 ## Gerar a documentação offline

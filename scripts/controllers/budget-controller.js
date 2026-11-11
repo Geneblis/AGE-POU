@@ -14,10 +14,8 @@ function normalizeImportedVariables(input) {
   return values.map((item, index) => {
     const cadence = item.cadence ?? (normalizeSearch(item.ritmo) === "anual" ? "annual" : "monthly");
     const scopeText = normalizeSearch(item.scope ?? item.alcance ?? "all");
-    let scope = "all";
-    if (SCOPES.includes(scopeText)) {
-      scope = scopeText;
-    } else if (scopeText === "receita" || scopeText === "despesa") {
+    let scope = scopeText;
+    if (scopeText === "receita" || scopeText === "despesa") {
       scope = "group";
     }
     const variable = {

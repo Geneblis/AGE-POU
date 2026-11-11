@@ -31,6 +31,8 @@ Esta página foi escrita a partir destes arquivos:
 | `planning.test.js` | Cálculo e organograma: hierarquia de baixo para cima, conta duplicada, três faixas, variação, 100% e consolidação, ciclos ([planning.test.js](../../tests/planning.test.js)) |
 | `workbook.test.js` | JSON só com entradas, Excel bloqueado sem 100%, abas ocultas, totais anuais, reabertura, recusa de fórmula alterada e **base real** ([workbook.test.js](../../tests/workbook.test.js)) |
 | `visual.test.js` | Rosca, ranking, estilos e gráficos do Excel, aspas do LibreOffice, precisão numérica e padrão AGE ([visual.test.js](../../tests/visual.test.js)) |
+| `organogram.test.js` | Sete raízes independentes, nomes repetidos e paridade entre guia, botão padrão e Excel |
+| `budget-validation.test.js` | Total único por grupo e rejeição de alcance de índice desconhecido |
 | `search.test.js` | Busca por palavras e lista de anos de "Projetar até" ([search.test.js](../../tests/search.test.js)) |
 | `local-runtime.test.js` | Regras do projeto: sem `type="module"`, sem recursos remotos no `index.html`, pastas, links dos `.md`, datas só no backlog, sem Python ([local-runtime.test.js](../../tests/local-runtime.test.js)) |
 | `forecast-history.test.js` | Mediana histórica, ajuste recorrente, recorte e compatibilidade |
@@ -40,7 +42,7 @@ Esta página foi escrita a partir destes arquivos:
 | `ui.browser.test.js` | Fluxo completo num navegador real, com Playwright ([ui.browser.test.js](../../tests/ui.browser.test.js)) |
 
 - **Base de teste:** `fixture()` cria uma receita e uma despesa de 2025-01 a 2026-07. `allocated(model)` cria um organograma com 100% ([fixtures.js](../../tests/fixtures.js)).
-- **Base real:** um teste lê `documents/database/orcamento/Evolução Receitas e Despesas_Atualizado até Setembro 2026.xlsx`, na raiz do repositório ([workbook.test.js](../../tests/workbook.test.js)). Esse teste falha se o arquivo for movido.
+- **Base real:** um teste lê `documents/database/orcamento/Evolução Receitas e Despesas_Atualizado até Setembro 2026.xlsx`, na raiz do repositório ([workbook.test.js](../../tests/workbook.test.js)). Se a base não existir nessa cópia, o teste informa que foi ignorado. Defina `POU_BUDGET_FIXTURE` com o caminho do arquivo para executá-lo; um caminho configurado incorretamente continua falhando.
 - **Navegador:** somente os testes opcionais de `ui.browser.test.js` dependem de ferramenta externa de manutenção e só rodam com `POU_PLAYWRIGHT` apontando para o módulo do Playwright. `POU_BROWSER_CHANNEL` escolhe o navegador (padrão `msedge`) ([ui.browser.test.js](../../tests/ui.browser.test.js)).
 
 Refatorações do domínio devem preservar a saída: compare, antes e depois, o modelo calculado, os arquivos do Excel gerado e o resultado da reabertura para o mesmo cenário.

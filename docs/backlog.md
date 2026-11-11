@@ -2,6 +2,15 @@
 
 Registro de mudanças, da mais nova para a mais antiga.
 
+## 11/11/2026 — Organograma unificado
+
+- Padrão AGE com 25 setores: CONAD, CONFI, Auditoria, CPL, PAD, Ouvidoria e Presidência sem superior; Assembleia Geral excluída e uma única Gerência de Pequenos Negócios.
+- Distribuição igualitária de 4% por setor; guia, ajuda e modelo alinhados. O ID existente `confin` continua identificando o CONFI.
+- Edição e importação recusam setores com nomes repetidos, ignorando acentos, espaços e maiúsculas.
+- Testes conferem a hierarquia do guia, a consolidação das raízes e a reabertura do Excel.
+- Importação rejeita índices com alcance desconhecido e bases sem um total único de Receita e Despesa.
+- Teste com base real aceita POU_BUDGET_FIXTURE; a cópia independente informa quando essa base opcional está ausente.
+
 ## 11/11/2026 — Revisão da documentação
 
 - Estrutura de pastas e responsabilidades MVC conferidas; comandos diretos e requisitos de uso separados das ferramentas externas de manutenção.

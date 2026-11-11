@@ -93,17 +93,18 @@ O alcance `sector` usa o **setor financeiro da planilha**, não a hierarquia adm
 
 ## Relação com a nova hierarquia da empresa
 
-O Organograma padrão AGE possui 24 setores administrativos. CONAD, CONFIN, Gerência de Auditoria Interna e CPL são raízes independentes, no mesmo nível da Presidência. **Ouvidoria** e **DIPLAG** são filhos diretos apenas de Presidência. Ele inclui DIROP, DIRFI e suas gerências e superintendências conforme a hierarquia canônica do [guia de Organograma](GUIA_LLM_ORGANOGRAMA_JSON.md).
+O Organograma padrão AGE possui 25 setores administrativos. CONAD, CONFI, Gerência de Auditoria Interna, CPL, Comissão PAD e Ouvidoria são raízes independentes, no mesmo nível da Presidência. **DIPLAG** é filha direta da Presidência. Ele inclui DIROP, DIRFI e suas gerências e superintendências conforme a hierarquia canônica do [guia de Organograma](GUIA_LLM_ORGANOGRAMA_JSON.md).
 
 Resumo hierárquico para conferência (os índices não recebem estes IDs):
 
 ```text
 CONAD (raiz)
-CONFIN (raiz)
+CONFI (raiz)
 Gerência de Auditoria Interna (raiz)
 CPL (raiz)
+Comissão PAD (raiz)
+Ouvidoria (raiz)
 Presidência - PRESI (raiz)
-├── Ouvidoria
 └── DIPLAG
     ├── Gerência Administrativa
     ├── Gerência de Planejamento de Dados, Mercado e Orçamento

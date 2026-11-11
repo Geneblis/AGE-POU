@@ -61,28 +61,29 @@ Cada item cria um setor administrativo.
 ```
 
 - `id`: texto não vazio e único. Use identificadores estáveis em minúsculas, com hífen.
-- `name`: nome visível do setor, de 1 a 120 caracteres.
-- `parent`: superior principal, ou `null` para setor raiz. É mantido para compatibilidade com arquivos antigos.
+- `name`: nome visível do setor, de 1 a 120 caracteres, único mesmo ao ignorar acentos, maiúsculas e espaços repetidos. IDs diferentes não permitem repetir o mesmo setor.
+- `parent`: superior principal, ou `null` para setor raiz. Identifica o superior direto quando não houver múltiplos superiores.
 - `parents`: opcional; array com **todos** os superiores diretos. Se houver mais de um, o primeiro deve ser igual a `parent`. Para um único superior, omita `parents`.
 - Todos os IDs de `parent` e `parents` precisam existir. Nunca crie ciclos, mesmo atravessando qualquer uma das relações múltiplas.
 - Um setor alcançado por dois caminhos é consolidado uma única vez; a relação extra não duplica receita ou despesa.
 
 ## Hierarquia padrão AGE
 
-Use esta hierarquia somente quando o usuário escolher explicitamente o padrão AGE. A tabela é a fonte canônica, de cima para baixo:
+Use esta hierarquia somente quando o usuário escolher explicitamente o padrão AGE. A tabela é a fonte canônica, de cima para baixo. Ela já incorpora as correções confirmadas do organograma: Assembleia Geral não entra; os seis órgãos independentes e a Presidência não têm superior. Linhas de ligação da imagem não mudam estas relações:
 
 | `id` | Setor administrativo | `parent` principal | `parents` quando múltiplo |
 | --- | --- | --- | --- |
 | `conad` | CONAD (Conselho de Administração) | `null` | — |
-| `confin` | CONFIN (Conselho Fiscal) | `null` | — |
+| `confin` | CONFI (Conselho Fiscal) | `null` | — |
 | `auditoria` | Gerência de Auditoria Interna | `null` | — |
 | `cpl` | CPL | `null` | — |
+| `pad` | Comissão PAD | `null` | — |
+| `ouvidoria` | Ouvidoria | `null` | — |
 | `presidencia` | Presidência - PRESI | `null` | — |
 | `juridica` | Superintendência Jurídica | `presidencia` | — |
 | `comunicacao` | Gerência de Comunicação | `presidencia` | — |
 | `compliance` | Gerência de Compliance e Controles Internos | `presidencia` | — |
 | `governanca` | Secretaria de Governança | `presidencia` | — |
-| `ouvidoria` | Ouvidoria | `presidencia` | — |
 | `dpg` | Diretoria de Planejamento e Gestão - DIPLAG | `presidencia` | — |
 | `administrativa` | Gerência Administrativa | `dpg` | — |
 | `dados` | Gerência de Planejamento de Dados, Mercado e Orçamento | `dpg` | — |
@@ -98,17 +99,19 @@ Use esta hierarquia somente quando o usuário escolher explicitamente o padrão 
 | `sup-cc` | Superintendência de Crédito e Cobrança | `dfin` | — |
 | `ger-cc` | Gerência de Crédito e Cobrança | `sup-cc` | — |
 
-CONAD, CONFIN, Gerência de Auditoria Interna e CPL são raízes independentes, no mesmo nível da Presidência. Use `parent: null` e omita `parents` nas raízes. Apontar um setor para o próprio ID cria um ciclo inválido. A Gerência de Pequenos Negócios aparece uma única vez, sob a Superintendência de Pequenos Negócios.
+CONAD, CONFI, Gerência de Auditoria Interna, CPL, Comissão PAD e Ouvidoria são raízes independentes, no mesmo nível da Presidência. Use `parent: null` e omita `parents` nas raízes. Apontar um setor para o próprio ID cria um ciclo inválido. A Gerência de Pequenos Negócios aparece uma única vez, sob a Superintendência de Pequenos Negócios.
+
+O ID estável `confin` identifica o **CONFI (Conselho Fiscal)**; use o nome da tabela. Não crie outro setor `confi`. Não inclua Assembleia Geral nem comissões adicionais. Nunca coloque `conad`, `confin`, `auditoria`, `cpl`, `pad` ou `ouvidoria` como filhos da Presidência no padrão AGE.
 
 ### Organograma aplicado pelo botão padrão
 
 Quando o usuário escolhe **Usar organograma padrão AGE**, o POU:
 
-- cria exatamente os 24 `boxes` da tabela acima;
-- mantém `conad`, `confin`, `auditoria`, `cpl` e `presidencia` como raízes no mesmo nível;
-- faz `ouvidoria` filha direta apenas de `presidencia` e `dpg` filho direto de `presidencia`;
-- cria um vínculo `type: "sector"` para cada setor financeiro existente na planilha, em cada um dos 24 setores administrativos;
-- usa `percent: 100 / 24` em cada vínculo, sem arredondar a regra no cálculo.
+- cria exatamente os 25 `boxes` da tabela acima;
+- mantém `conad`, `confin`, `auditoria`, `cpl`, `pad`, `ouvidoria` e `presidencia` como raízes no mesmo nível;
+- mantém `dpg` como filho direto de `presidencia`;
+- cria um vínculo `type: "sector"` para cada setor financeiro existente na planilha, em cada um dos 25 setores administrativos;
+- usa `percent: 100 / 25` em cada vínculo, sem arredondar a regra no cálculo.
 
 O setor financeiro da planilha (`origin`, por exemplo `818`) não é setor administrativo. Não use o código financeiro como `box`, `id` ou `parent`. O organograma administrativo apenas recebe e consolida esses valores.
 
@@ -116,16 +119,17 @@ O setor financeiro da planilha (`origin`, por exemplo `818`) não é setor admin
 
 ```text
 CONAD (Conselho de Administração)
-CONFIN (Conselho Fiscal)
+CONFI (Conselho Fiscal)
 Gerência de Auditoria Interna
 CPL
+Comissão PAD
+Ouvidoria
 
 Presidência - PRESI
     ├── Superintendência Jurídica
     ├── Gerência de Comunicação
     ├── Gerência de Compliance e Controles Internos
     ├── Secretaria de Governança
-    ├── Ouvidoria
     ├── Diretoria de Planejamento e Gestão - DIPLAG
     │   ├── Gerência Administrativa
     │   ├── Gerência de Planejamento de Dados, Mercado e Orçamento
@@ -197,10 +201,10 @@ Use somente códigos presentes na planilha que estará aberta no POU.
 1. Todas as dúvidas foram reunidas em um único bloco e respondidas.
 2. O usuário confirmou explicitamente o resumo final.
 3. Use `format` igual a `orca-organograma` e `version` igual a `1`.
-4. Garanta IDs únicos em `boxes` e `links`.
+4. Garanta IDs únicos em `boxes` e `links` e nomes únicos em `boxes`, mesmo com variações de acentos, espaços ou maiúsculas.
 5. Confirme todos os `parent` e `box`, sem ciclos ou superiores ausentes.
 6. Copie códigos `origin` exatamente da planilha fornecida.
 7. Comprove que cada conta e ajuste fecha em 100% com arredondamento para duas casas, considerando vínculos por conta e por setor da base.
 8. Confirme que não existe sobreposição involuntária entre `sector` e `account`.
-9. Se padrão AGE foi escolhido, confirme 24 setores, raízes `conad`, `confin`, `auditoria`, `cpl` e `presidencia`, `ouvidoria` e `dpg` como filhos diretos de `presidencia` e uma única `ger-pn` sob `sup-pn`.
+9. Se padrão AGE foi escolhido, confirme 25 setores, raízes `conad`, `confin`, `auditoria`, `cpl`, `pad`, `ouvidoria` e `presidencia`, `dpg` como filho direto de `presidencia` e uma única `ger-pn` sob `sup-pn`.
 10. Depois da confirmação, retorne apenas JSON válido quando solicitado a gerar o arquivo.

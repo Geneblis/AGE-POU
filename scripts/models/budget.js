@@ -335,7 +335,11 @@ function organize(inputRows, historyStart) {
   checkRequiredMonths(periods, targetYear);
 
   const roots = rows.filter(row => isGroupRoot(row.account));
-  if (roots.length < 2) throw new Error("Os totais principais de receita e despesa não foram encontrados.");
+  for (const group of ["Receita", "Despesa"]) {
+    if (roots.filter(row => row.group === group).length !== 1) {
+      throw new Error(`A base deve conter um único total principal de ${group}.`);
+    }
+  }
   const lastActual = findLastActual(roots, targetYear);
   const availableActualPeriods = periods.filter(period => period <= lastActual);
   const actualPeriods = historyStart === undefined

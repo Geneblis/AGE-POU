@@ -31,7 +31,7 @@ O organograma responde a uma pergunta: **qual setor administrativo responde por 
 
 O formato completo está no comentário do topo de [organogram.js](../../scripts/models/organogram.js).
 
-**Organograma padrão AGE:** 24 setores fixos. CONAD, CONFIN, Gerência de Auditoria Interna e CPL são raízes independentes, no mesmo nível da Presidência. Ouvidoria e DIPLAG são filhos diretos da Presidência. A Gerência de Pequenos Negócios aparece uma única vez, sob sua superintendência ([organogram.js](../../scripts/models/organogram.js)). Cada setor recebe `100 ÷ 24` de cada setor da base ([organogram.js](../../scripts/models/organogram.js)). Os quatro setores independentes entram no total geral e ficam fora do consolidado da Presidência. Como a divisão não é exata, a regra dos 100% usa tolerância.
+**Organograma padrão AGE:** 25 setores fixos. CONAD, CONFI, Gerência de Auditoria Interna, CPL, Comissão PAD e Ouvidoria são raízes independentes, no mesmo nível da Presidência. DIPLAG é filha direta da Presidência. A Gerência de Pequenos Negócios aparece uma única vez, sob sua superintendência ([organogram.js](../../scripts/models/organogram.js)). Cada setor recebe `100 ÷ 25` de cada setor da base ([organogram.js](../../scripts/models/organogram.js)). Os seis setores independentes entram no total geral e ficam fora do consolidado da Presidência. A divisão padrão é exata: 4% por setor.
 
 `addSuperior` cria um setor acima de outro. Se o filho tinha um único superior, o novo setor fica entre os dois: herda o superior antigo e passa a ser o superior direto do filho. Se o filho já tinha vários superiores, o novo é acrescentado e as ligações diretas anteriores são preservadas. Se o filho era raiz, passa a ficar abaixo do novo setor. Assim, a hierarquia pode ser montada de baixo para cima ([organogram.js](../../scripts/models/organogram.js)).
 
@@ -45,7 +45,7 @@ Existem duas verificações diferentes, de propósito:
 
 | Verificação | Quando | O que confere | Código |
 |-------------|--------|---------------|--------|
-| `validateOrganogram` | Sempre: ao editar, importar, salvar e abrir | Formato, ids únicos, nome até 120 caracteres, superiores existentes, **sem ciclos**, origem existente e percentual ≥ 0 | [organogram.js](../../scripts/models/organogram.js) |
+| `validateOrganogram` | Sempre: ao editar, importar, salvar e abrir | Formato, IDs e nomes únicos (ignorando acentos, espaços repetidos e maiúsculas), nome até 120 caracteres, superiores existentes, **sem ciclos**, origem existente e percentual ≥ 0 | [organogram.js](../../scripts/models/organogram.js) |
 | `allocationIssues` | Antes de exportar o Excel e na lista de pendências | A soma dos vínculos de cada conta arredonda para 100% na mesma precisão da tela: até duas casas decimais | [organogram.js](../../scripts/models/organogram.js) |
 
 Por isso, **rascunho incompleto pode ser salvo em JSON**, mas não vira Excel ([app-controller.js](../../scripts/controllers/app-controller.js), [xlsx.js](../../scripts/export/xlsx.js)).
