@@ -1,0 +1,296 @@
+<!doctype html>
+<html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="robots" content="noindex,nofollow"><meta name="description" content="Planejador orçamentário local com importação e exportação em Excel."><title>Planejador Orçamentário Universal</title><link rel="icon" type="image/svg+xml" href="images/age-fav-icon.svg" sizes="any"><link rel="stylesheet" href="styles/styles.css"></head>
+<body id="topo">
+<a class="skip-link" href="#conteudo">Ir para o conteúdo</a>
+<header class="topbar">
+  <div class="brand" aria-label="POU, Planejador Orçamentário Universal">
+    <img class="age-logo" src="images/cropped-Logo-AGE_negativa-horizontal-e1718029628340-300x86.png" alt="Agência de Empreendedorismo de Pernambuco" width="300" height="86">
+    <span class="brand-caption"><strong>POU</strong><small>Planejador Orçamentário Universal</small></span>
+  </div>
+  <div class="topbar-actions">
+    <div class="privacy"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#shield-check"/></svg> Seus dados ficam neste computador</div>
+    <button type="button" class="help-button" id="help-button" aria-label="Central de ajuda" aria-haspopup="dialog" aria-controls="help-dialog"><img class="icon" src="images/icons/circle-help.svg" alt=""><span>Central de ajuda</span></button>
+  </div>
+</header>
+<dialog id="help-dialog" class="help-dialog" aria-labelledby="help-title">
+  <div class="help-header">
+    <div>
+      <p class="help-kicker">CENTRAL DE AJUDA DO POU</p>
+      <h2 id="help-title">Planeje com confiança, mesmo começando do zero</h2>
+      <p>Guia completo, em linguagem simples, para importar, projetar, conferir, organizar e exportar seu orçamento.</p>
+    </div>
+    <form method="dialog"><button class="help-close" aria-label="Fechar central de ajuda"><img class="icon" src="images/icons/x.svg" alt=""></button></form>
+  </div>
+
+  <nav class="help-nav" aria-label="Assuntos da central de ajuda">
+    <a href="#ajuda-comecar">Comece aqui</a>
+    <a href="#ajuda-planilha">Planilha</a>
+    <a href="#ajuda-periodos">Datas e cálculo</a>
+    <a href="#ajuda-orcamento">Orçamento</a>
+    <a href="#ajuda-indices">Índices</a>
+    <a href="#ajuda-organograma">Organograma</a>
+    <a href="#ajuda-arquivos">Salvar e exportar</a>
+    <a href="#ajuda-duvidas">Perguntas frequentes</a>
+    <a href="#ajuda-glossario">Glossário</a>
+  </nav>
+
+  <div class="help-content">
+    <section class="help-welcome" aria-labelledby="ajuda-comecar">
+      <div class="help-welcome-copy">
+        <span class="help-icon help-icon-large"><img class="icon" src="images/icons/book-open.svg" alt=""></span>
+        <div><h3 id="ajuda-comecar">Comece por este caminho</h3><p>Você fornece o histórico da empresa. O POU estima os próximos meses, permite testar cenários e gera um Excel pronto para análise.</p></div>
+      </div>
+      <div class="help-privacy"><img class="icon" src="images/icons/shield-check.svg" alt=""><p><strong>O conteúdo dos seus arquivos permanece neste computador.</strong> O planejamento é processado localmente no navegador.</p></div>
+    </section>
+
+    <section class="help-steps" aria-labelledby="ajuda-roteiro">
+      <h3 id="ajuda-roteiro">Roteiro em 5 etapas</h3>
+      <div class="help-step">
+        <span class="help-icon"><img class="icon" src="images/icons/upload.svg" alt=""></span>
+        <div><h4>1. Importe a base</h4><p>Selecione a planilha Excel com o histórico de receitas e despesas.</p><p class="help-example"><strong>Você verá:</strong> nome do arquivo, período, contas reconhecidas e último mês realizado.</p></div>
+      </div>
+      <div class="help-step">
+        <span class="help-icon"><img class="icon" src="images/icons/calendar-days.svg" alt=""></span>
+        <div><h4>2. Defina o período</h4><p>Escolha até qual ano deseja planejar e como o sistema deve tratar cada faixa de meses.</p></div>
+      </div>
+      <div class="help-step">
+        <span class="help-icon"><img class="icon" src="images/icons/chart-no-axes-combined.svg" alt=""></span>
+        <div><h4>3. Confira e ajuste</h4><p>Compare Realizado, Projetado e Variação. Edite valores quando necessário.</p></div>
+      </div>
+      <div class="help-step">
+        <span class="help-icon"><img class="icon" src="images/icons/git-compare-arrows.svg" alt=""></span>
+        <div><h4>4. Distribua por setor</h4><p>Informe quais áreas administrativas respondem por cada receita e despesa.</p></div>
+      </div>
+      <div class="help-step">
+        <span class="help-icon"><img class="icon" src="images/icons/download.svg" alt=""></span>
+        <div><h4>5. Salve ou exporte</h4><p>Guarde um rascunho em JSON ou baixe o planejamento completo em Excel.</p></div>
+      </div>
+    </section>
+
+    <section id="ajuda-planilha" class="help-topic" aria-labelledby="ajuda-planilha-titulo">
+      <h3 id="ajuda-planilha-titulo"><img class="icon" src="images/icons/file-spreadsheet.svg" alt="">Prepare a planilha de entrada</h3>
+      <p>Use um arquivo <strong>.xlsx</strong> de até <strong>25 MB</strong>. A planilha precisa conter:</p>
+      <ul class="help-checklist">
+        <li><img class="icon" src="images/icons/check.svg" alt=""><span>Uma aba chamada <strong>Dados Analíticos</strong>.</span></li>
+        <li><img class="icon" src="images/icons/check.svg" alt=""><span>Coluna <strong>Novo Cosif</strong> ou <strong>Conta COSIF/Interna</strong>.</span></li>
+        <li><img class="icon" src="images/icons/check.svg" alt=""><span>Coluna <strong>Descrição</strong> e uma coluna para cada mês.</span></li>
+        <li><img class="icon" src="images/icons/check.svg" alt=""><span>Todos os 12 meses do ano anterior e, no ano atual, pelo menos janeiro a junho.</span></li>
+        <li><img class="icon" src="images/icons/check.svg" alt=""><span>Totais principais e setores da base identificáveis.</span></li>
+      </ul>
+      <div class="help-note"><img class="icon" src="images/icons/info.svg" alt=""><p><strong>Como as contas são classificadas:</strong> códigos iniciados por 7 são Receitas; códigos iniciados por 8 são Despesas. Contas analíticas duplicadas são recusadas para evitar soma ambígua.</p></div>
+      <p>Se a base do ano atual já tiver janeiro a dezembro completos, ela não serve para projeção desse mesmo ano. Use uma base cujo ano mais recente ainda esteja em andamento.</p>
+    </section>
+
+    <section id="ajuda-periodos" class="help-topic" aria-labelledby="ajuda-periodos-titulo">
+      <h3 id="ajuda-periodos-titulo"><img class="icon" src="images/icons/calendar-days.svg" alt="">Entenda as datas e o cálculo</h3>
+      <p><strong>Projetar até</strong> define o último ano do planejamento. A lista começa no último ano da planilha e vai até 20 anos depois; por exemplo, base de 2026 permite projetar até 2046. Novas importações já começam no último ano da lista. O POU sempre calcula até dezembro do ano escolhido.</p>
+      <p><strong>Começar em</strong> escolhe o primeiro mês da base histórica. Os meses anteriores ficam fora das tabelas, dos totais e das projeções. No Excel, os valores anteriores ficam na aba oculta <strong>Histórico anterior</strong>.</p>
+      <div class="help-periods" aria-label="Três faixas do planejamento">
+        <article><span>1</span><h4>Cópia do Realizado</h4><p>Até o mês anterior a <strong>Ir até</strong>, o Projetado repete o valor Realizado. Se você corrigir o Realizado, a cópia acompanha.</p></article>
+        <article><span>2</span><h4>Fórmula fixa</h4><p>De <strong>Ir até</strong> até <strong>Retomar em</strong>, inclusive, o sistema preserva o primeiro cálculo. Alterações posteriores não mudam essa faixa.</p></article>
+        <article><span>3</span><h4>Fórmula dinâmica</h4><p>A partir do mês seguinte a <strong>Retomar em</strong>, o POU recalcula usando o histórico, a tendência e os índices atuais.</p></article>
+      </div>
+      <div class="help-example-box"><strong>Exemplo.</strong> Com “Começar em” em março, “Ir até” em maio e “Retomar em” em setembro de 2026, março e abril copiam o Realizado. Maio a setembro ficam fixos. O cálculo dinâmico começa em outubro.</div>
+      <h4>Como nasce o Projetado?</h4>
+      <ol>
+        <li>Para a primeira projeção de cada mês, o POU usa a mediana do Realizado daquele mês em todos os anos do recorte. Nos anos seguintes, parte da previsão-base do mesmo mês do ano anterior.</li>
+        <li>Soma um ajuste mensal estimado com o Realizado dos primeiros semestres, a tendência recente e os valores do setor.</li>
+        <li>Quando falta a referência anual, usa a média dos até 12 meses de Realizado anteriores a <strong>Ir até</strong>.</li>
+        <li>Limita a previsão-base a zero quando ela ficaria negativa e aplica os índices cadastrados.</li>
+      </ol>
+      <div class="help-warning"><img class="icon" src="images/icons/circle-alert.svg" alt=""><p><strong>Cadastre índices antes de criar uma faixa fixa.</strong> A faixa fixa guarda o cálculo existente no momento da configuração. Índices adicionados depois afetam somente a faixa dinâmica.</p></div>
+    </section>
+
+    <section id="ajuda-orcamento" class="help-topic" aria-labelledby="ajuda-orcamento-titulo">
+      <h3 id="ajuda-orcamento-titulo"><img class="icon" src="images/icons/chart-no-axes-combined.svg" alt="">Leia e ajuste o Orçamento</h3>
+      <div class="help-definition-grid">
+        <article><h4>Realizado</h4><p>Valor que aconteceu de verdade. Pode ser corrigido diretamente na tabela.</p></article>
+        <article><h4>Projetado</h4><p>Valor esperado. Só pode ser editado na faixa de fórmula dinâmica.</p></article>
+        <article><h4>Variação</h4><p>Diferença percentual entre Realizado e Projetado. O sinal indica se o Realizado ficou acima ou abaixo do Projetado.</p></article>
+      </div>
+      <p>Para receitas, despesas e resultado, a Variação é positiva quando o Realizado é maior que o Projetado e negativa quando é menor. Com R$ 100 projetados, um Realizado de R$ 120 dá +20% e um Realizado de R$ 80 dá −20%.</p>
+      <ul>
+        <li>Use <strong>Exibir ano</strong> para trocar o período visível.</li>
+        <li>Use <strong>Buscar conta</strong> para localizar código ou descrição.</li>
+        <li>Apague uma edição manual para restaurar o cálculo original ou deixar um Realizado futuro vazio.</li>
+        <li>Use <strong>Desfazer</strong> ou <kbd>Ctrl</kbd>+<kbd>Z</kbd>. Use <strong>Refazer</strong> ou <kbd>Ctrl</kbd>+<kbd>Y</kbd>.</li>
+        <li>Quando não existe base suficiente ou o Projetado é zero, a Variação aparece como 0%.</li>
+      </ul>
+    </section>
+
+    <section id="ajuda-indices" class="help-topic" aria-labelledby="ajuda-indices-titulo">
+      <h3 id="ajuda-indices-titulo"><img class="icon" src="images/icons/sliders-horizontal.svg" alt="">Simule cenários com Índices</h3>
+      <p>Índice é um aumento ou redução aplicado à projeção. Exemplos: inflação, reajuste contratual, crescimento esperado ou economia planejada.</p>
+      <div class="help-definition-grid">
+        <article><h4>Taxa</h4><p>Percentual do ajuste. Use valor negativo para reduzir. A taxa precisa ser maior que −100%.</p></article>
+        <article><h4>Aplicação</h4><p><strong>Mês a mês</strong> repete o índice em cada mês. <strong>Ano a ano</strong> aplica uma vez a cada 12 meses.</p></article>
+        <article><h4>Alcance</h4><p>Pode afetar todo o orçamento, apenas Receitas ou Despesas, um setor da base ou uma conta.</p></article>
+      </div>
+      <p>Índices se acumulam por multiplicação. Dois índices de 10% resultam em 21%, pois o segundo incide sobre o valor já aumentado: 1,10 × 1,10 = 1,21.</p>
+      <p>O índice começa na data informada, acumula durante a vigência e mantém o último fator depois do fim. Ele nunca altera o Realizado.</p>
+    </section>
+
+    <section id="ajuda-organograma" class="help-topic" aria-labelledby="ajuda-organograma-titulo">
+      <h3 id="ajuda-organograma-titulo"><img class="icon" src="images/icons/git-compare-arrows.svg" alt="">Monte o Organograma Orçamentário</h3>
+      <p>O organograma responde: <strong>qual área administrativa é responsável por cada valor realizado?</strong></p>
+      <div class="help-compare">
+        <div><h4>Setor da base</h4><p>Agrupamento financeiro existente na planilha importada.</p></div>
+        <div><h4>Setor administrativo</h4><p>Área da empresa criada no POU, como Presidência, Diretoria ou Gerência.</p></div>
+      </div>
+      <h4>Caminho rápido</h4>
+      <p>Clique em <strong>Usar organograma padrão AGE</strong>. O sistema cria 24 setores e reparte cada receita e despesa igualmente: 100 ÷ 24, cerca de 4,17% para cada setor. CONAD, CONFIN, Gerência de Auditoria Interna e CPL são raízes independentes, no mesmo nível da Presidência. A Ouvidoria é filha direta da Presidência.</p>
+      <h4>Caminho manual</h4>
+      <ol>
+        <li>Abra <strong>Configurar setores e distribuição</strong>.</li>
+        <li>Crie o setor administrativo que recebe diretamente uma conta ou setor da base.</li>
+        <li>Adicione o vínculo e informe o percentual.</li>
+        <li>Selecione um ou mais setores superiores; use <strong>Criar superior deste setor</strong> para construir a hierarquia de baixo para cima.</li>
+        <li>Repita até todas as contas e ajustes somarem exatamente 100%.</li>
+        <li>Use a busca de vínculos para localizar uma receita ou despesa e ajustar os setores ligados a ela.</li>
+      </ol>
+      <div class="help-note"><img class="icon" src="images/icons/info.svg" alt=""><p><strong>Valor próprio</strong> vem dos vínculos diretos do setor. <strong>Valor consolidado</strong> soma o valor próprio com os subordinados, contando cada setor uma única vez mesmo quando ele tem mais de um superior. Essa soma hierárquica não consome percentual novamente.</p></div>
+      <p>O gráfico, o ranking e a árvore usam somente valores <strong>Realizados</strong>. Escolha ano, período e Receitas ou Despesas nos filtros. Na hierarquia, cada setor tem uma barra de Receita e uma de Despesa: a parte clara é direta e a escura é indireta, vinda dos subordinados.</p>
+    </section>
+
+    <section id="ajuda-arquivos" class="help-topic" aria-labelledby="ajuda-arquivos-titulo">
+      <h3 id="ajuda-arquivos-titulo"><img class="icon" src="images/icons/download.svg" alt="">Saiba o que salvar e exportar</h3>
+      <div class="help-files">
+        <article><span class="help-icon"><img class="icon" src="images/icons/download.svg" alt=""></span><div><h4>Salvar planejamento · JSON</h4><p>Guarda base, datas, índices, edições e organograma. Aceita rascunho com distribuição incompleta.</p></div></article>
+        <article><span class="help-icon"><img class="icon" src="images/icons/sliders-horizontal.svg" alt=""></span><div><h4>Exportar índices · JSON</h4><p>Guarda somente os índices para reutilização. Ao importar, o POU valida se contas e setores existem na nova base.</p></div></article>
+        <article><span class="help-icon"><img class="icon" src="images/icons/git-compare-arrows.svg" alt=""></span><div><h4>Salvar organograma · JSON</h4><p>Guarda somente setores e vínculos. Importar outro organograma substitui a configuração atual.</p></div></article>
+        <article><span class="help-icon"><img class="icon" src="images/icons/file-spreadsheet.svg" alt=""></span><div><h4>Exportar Excel · XLSX</h4><p>Exige 100% de distribuição. Cria Orçamento, Índices e Organograma Orçamentário, além de abas técnicas ocultas.</p></div></article>
+      </div>
+      <p>O Excel exportado mantém fórmulas e pode ser aberto novamente no POU. Valores numéricos editados voltam ao site. Fórmulas alteradas são recusadas para evitar resultados incorretos.</p>
+    </section>
+
+    <section id="ajuda-duvidas" class="help-topic help-faq" aria-labelledby="ajuda-duvidas-titulo">
+      <h3 id="ajuda-duvidas-titulo"><img class="icon" src="images/icons/circle-help.svg" alt="">Perguntas frequentes</h3>
+      <details><summary>Qual arquivo devo escolher primeiro?</summary><p>Use a planilha Excel original da empresa. Para continuar um trabalho anterior, use <strong>Abrir planejamento salvo</strong> e escolha o JSON do planejamento ou um Excel gerado pelo próprio POU.</p></details>
+      <details><summary>O que significa “Faltam os meses obrigatórios”?</summary><p>A planilha não possui todos os 12 meses do ano anterior e janeiro a junho do ano mais recente. Inclua as colunas ausentes e tente novamente.</p></details>
+      <details><summary>Por que a aba Dados Analíticos não foi encontrada?</summary><p>O nome da aba precisa ser exatamente <strong>Dados Analíticos</strong>. Renomeie a aba no Excel e importe novamente.</p></details>
+      <details><summary>Por que nenhuma conta válida foi reconhecida?</summary><p>Confira as colunas de conta e descrição. O POU usa contas iniciadas por 7 para Receita e por 8 para Despesa, e precisa identificar contas analíticas e setores.</p></details>
+      <details><summary>Posso usar uma base com o ano atual completo?</summary><p>Não para projetar esse mesmo ano. O POU precisa que o ano mais recente esteja incompleto, mas com o primeiro semestre completo.</p></details>
+      <details><summary>Para que servem “Começar em”, “Ir até” e “Retomar em”?</summary><p>“Começar em” inclui o mês escolhido e os seguintes no cenário. “Ir até” copia o Realizado até o mês anterior ao escolhido. “Retomar em” reinicia a fórmula dinâmica no mês seguinte ao escolhido. O cálculo fica fixo de “Ir até” a “Retomar em”, inclusive.</p></details>
+      <details><summary>Por que não consigo editar um valor Projetado?</summary><p>Projetado de cópia e Projetado da faixa fixa são protegidos. Só a faixa dinâmica aceita edição manual.</p></details>
+      <details><summary>Como removo uma edição manual?</summary><p>Apague o conteúdo da célula e confirme. O POU restaura o cálculo original do Projetado ou deixa o Realizado futuro vazio.</p></details>
+      <details><summary>O que significa uma Variação positiva?</summary><p>O Realizado ficou acima do Projetado. Em receitas, entrou mais que o previsto. Em despesas, saiu mais que o previsto.</p></details>
+      <details><summary>Um índice altera valores já realizados?</summary><p>Não. Índices afetam somente o Projetado. O Realizado permanece igual.</p></details>
+      <details><summary>Por que dois índices de 10% não resultam em 20%?</summary><p>Porque os índices são multiplicados. O primeiro transforma 100 em 110; o segundo aplica 10% sobre 110 e chega a 121.</p></details>
+      <details><summary>Por que o Excel está bloqueado?</summary><p>Uma ou mais contas ou ajustes não totalizam 100% no organograma. Abra o aviso de distribuição, corrija os percentuais ou use o organograma padrão AGE.</p></details>
+      <details><summary>Posso salvar antes de concluir o organograma?</summary><p>Sim. <strong>Salvar planejamento</strong> gera um JSON de rascunho mesmo com percentuais incompletos. Somente a exportação do Excel exige 100%.</p></details>
+      <details><summary>O organograma usa os valores Projetados?</summary><p>Não. Organograma, gráfico e ranking usam somente valores Realizados.</p></details>
+      <details><summary>O que acontece ao importar outro organograma?</summary><p>A estrutura e os vínculos atuais são substituídos. Salve o organograma atual antes, caso queira recuperá-lo.</p></details>
+      <details><summary>Por que aparece “Fórmula alterada” ao reabrir um Excel?</summary><p>Uma fórmula protegida foi modificada. Use o Excel originalmente exportado ou abra o JSON salvo. O bloqueio evita importar cálculos inconsistentes.</p></details>
+      <details><summary>O conteúdo dos meus arquivos é enviado para algum servidor?</summary><p>Não. Leitura, cálculo e geração dos arquivos acontecem localmente no navegador.</p></details>
+      <details><summary>O POU funciona sem internet?</summary><p>Sim. Depois de baixar a pasta completa, abra o arquivo <strong>index.html</strong>. Mantenha juntas as pastas de scripts, estilos e imagens.</p></details>
+    </section>
+
+    <section id="ajuda-glossario" class="help-topic help-glossary" aria-labelledby="ajuda-glossario-titulo">
+      <h3 id="ajuda-glossario-titulo"><img class="icon" src="images/icons/book-open.svg" alt="">Glossário</h3>
+      <dl>
+        <div><dt>Receita</dt><dd>Dinheiro que entra.</dd></div>
+        <div><dt>Despesa</dt><dd>Dinheiro que sai.</dd></div>
+        <div><dt>Resultado</dt><dd>Receita menos Despesa. Positivo indica sobra; negativo indica falta.</dd></div>
+        <div><dt>Realizado</dt><dd>Valor que já aconteceu de verdade.</dd></div>
+        <div><dt>Projetado</dt><dd>Estimativa do que deve acontecer.</dd></div>
+        <div><dt>Variação</dt><dd>Diferença percentual entre o que aconteceu e o que foi planejado.</dd></div>
+        <div><dt>Índice</dt><dd>Percentual de aumento ou redução aplicado ao Projetado.</dd></div>
+        <div><dt>COSIF</dt><dd>Código contábil usado para identificar e organizar contas financeiras.</dd></div>
+        <div><dt>Rubrica</dt><dd>Nome ou descrição de uma conta do orçamento.</dd></div>
+        <div><dt>Setor da base</dt><dd>Grupo financeiro que já existe na planilha importada.</dd></div>
+        <div><dt>Setor administrativo</dt><dd>Área da empresa criada para receber e consolidar valores.</dd></div>
+        <div><dt>Organograma</dt><dd>Desenho da hierarquia entre setores.</dd></div>
+        <div><dt>Vínculo</dt><dd>Ligação entre uma origem financeira e um setor administrativo, com percentual.</dd></div>
+        <div><dt>Fórmula</dt><dd>Regra automática usada para calcular um valor.</dd></div>
+        <div><dt>Importar</dt><dd>Abrir no POU um arquivo que já existe.</dd></div>
+        <div><dt>Exportar</dt><dd>Criar e baixar um novo arquivo com o resultado.</dd></div>
+        <div><dt>JSON</dt><dd>Arquivo de dados usado para salvar e reabrir o trabalho no POU.</dd></div>
+        <div><dt>XLSX</dt><dd>Formato moderno de planilha do Microsoft Excel.</dd></div>
+      </dl>
+    </section>
+
+    <div class="help-tip"><img class="icon" src="images/icons/info.svg" alt=""><p><strong>Boa prática:</strong> salve o planejamento em JSON durante o trabalho. Exporte o Excel quando a análise e a distribuição estiverem concluídas.</p></div>
+    <div class="help-footer"><a href="#ajuda-comecar" class="help-back">Voltar ao início</a><form method="dialog"><button class="primary-button">Fechar central de ajuda</button></form></div>
+  </div>
+</dialog>
+<main id="conteudo">
+<section class="intro" aria-labelledby="titulo-principal">
+  <div><p class="eyebrow">PLANEJAMENTO ORÇAMENTÁRIO</p><h1 id="titulo-principal">Planejamento com visão<br>de cada resultado.</h1></div>
+  <p class="intro-copy">Simule cenários e acompanhe receitas, despesas e distribuição por setor.</p>
+</section>
+<ol class="steps" aria-label="Etapas do planejamento"><li class="active"><span>01</span> Importar</li><li><span>02</span> Configurar</li><li><span>03</span> Analisar</li><li><span>04</span> Exportar</li></ol>
+<section class="upload-panel" id="upload-panel" aria-labelledby="upload-title">
+  <div><p class="section-number">01 / BASE ORÇAMENTÁRIA</p><h2 id="upload-title">Comece pela planilha</h2><p>Use um arquivo <strong>.xlsx</strong> com a aba “Dados Analíticos”, contas COSIF, descrição e colunas mensais.</p></div>
+  <label class="drop-zone" id="drop-zone" for="xlsx-input"><span class="upload-icon"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#upload"/></svg></span><strong>Arraste o Excel para cá</strong><span>ou clique para selecionar · máximo 25 MB</span><input id="xlsx-input" type="file" accept=".xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"></label>
+  <div class="upload-actions"><label class="secondary-button" for="project-input">Abrir planejamento salvo</label><input id="project-input" type="file" accept="application/json,.json"></div>
+</section>
+<div id="status" class="status" role="status" aria-live="polite"></div>
+<div id="workspace" hidden>
+<section class="source-strip" aria-label="Resumo da importação"><div><small>ARQUIVO</small><strong id="source-name">—</strong></div><div><small>PERÍODO</small><strong id="source-period">—</strong></div><div><small>CONTAS VÁLIDAS</small><strong id="source-accounts">—</strong></div><div><small>ÚLTIMO REALIZADO</small><strong id="source-actual">—</strong></div><div><small id="standard-average-label">MÉDIA PADRÃO</small><strong id="standard-average">—</strong></div><button type="button" id="change-file" class="text-button">Trocar arquivo</button></section>
+<section class="configuration" aria-labelledby="config-title">
+  <div class="section-heading">
+    <div><p class="section-number">02 / CONFIGURAÇÃO</p><h2 id="config-title">Defina o cenário</h2></div>
+    <div class="configuration-actions">
+      <div class="history-actions" aria-label="Histórico do planejamento"><button id="undo-change" type="button" class="secondary-button" disabled title="Ctrl+Z">↶ Desfazer</button><button id="redo-change" type="button" class="secondary-button" disabled title="Ctrl+Y">↷ Refazer</button></div>
+      <div class="horizon-field"><label for="end-year">Projetar até (ano)</label><select id="end-year" aria-describedby="horizon-help"></select></div>
+    </div>
+  </div>
+  <p id="horizon-help" class="form-note">Projeção até dezembro do ano escolhido.</p>
+  <div class="period-controls">
+    <label for="history-start">Começar em (mês/ano)<select id="history-start" aria-describedby="history-start-help"></select><small id="history-start-help">A base histórica vai partir deste ponto.</small></label>
+    <label for="copy-through">Ir até (mês/ano)<select id="copy-through" aria-describedby="copy-help"></select><small id="copy-help">Copia o Realizado até o mês anterior ao escolhido.</small></label>
+    <label for="resume-at">Retomar em (mês/ano)<select id="resume-at" aria-describedby="resume-help"></select><small id="resume-help">Recalcula a partir do mês seguinte ao escolhido.</small></label>
+  </div>
+  <dl class="projection-periods" aria-label="Como o Projetado funciona no cenário atual" aria-live="polite">
+    <div><dt>1. Cópia do Realizado</dt><dd id="projection-copy">—</dd></div>
+    <div><dt>2. Fórmula fixa</dt><dd id="projection-fixed">—</dd></div>
+    <div><dt>3. Fórmula dinâmica</dt><dd id="projection-dynamic">—</dd></div>
+  </dl>
+  <p class="form-note">O intervalo fixo mantém o cálculo inicial. O Realizado é editável.</p>
+</section>
+<nav class="mode-tabs" role="tablist" aria-label="Ferramentas do POU"><button id="planning-tab" type="button" role="tab" aria-selected="true" aria-controls="planning-view"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#chart-no-axes-combined"/></svg>Orçamento</button><button id="indices-tab" type="button" role="tab" aria-selected="false" aria-controls="indices-view" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#sliders-horizontal"/></svg>Índices</button><button id="organogram-tab" type="button" role="tab" aria-selected="false" aria-controls="organogram-view" tabindex="-1"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#git-compare-arrows"/></svg>Organograma Orçamentário</button></nav>
+<section id="planning-view" role="tabpanel" aria-labelledby="planning-tab" class="analysis"><div class="section-heading analysis-heading"><div><p class="section-number">03 / ANÁLISE</p><h2>Realizado e projetado</h2></div><div class="toolbar"><label>Exibir ano<select id="view-year"></select></label><label>Exibir até o mês<select id="view-month"><option value="1">Janeiro</option><option value="2">Fevereiro</option><option value="3">Março</option><option value="4">Abril</option><option value="5">Maio</option><option value="6">Junho</option><option value="7">Julho</option><option value="8">Agosto</option><option value="9">Setembro</option><option value="10">Outubro</option><option value="11">Novembro</option><option value="12" selected>Dezembro</option></select></label><label>Buscar conta<input id="account-search" type="search" placeholder="Código ou descrição"></label></div></div>
+<section class="summary-panel" id="summary-panel" aria-label="Totais projetados e realizados">
+  <div class="summary-band"><strong id="projected-band-title">PROJETADO</strong><span id="projected-band-period">Janeiro a dezembro</span></div>
+  <article class="summary-card revenue"><small>RECEITA</small><strong class="summary-value" id="total-revenue">—</strong></article>
+  <article class="summary-card expense"><small>DESPESA</small><strong class="summary-value" id="total-expense">—</strong></article>
+  <article class="summary-card result"><small>RESULTADO</small><strong class="summary-value" id="total-result">—</strong></article>
+  <article class="summary-chart">
+    <small>RESULTADO PROJETADO MÊS A MÊS</small>
+    <svg id="result-chart" viewBox="0 0 360 96" role="img" aria-label="Resultado mensal"></svg>
+    <div class="summary-chart-legend" aria-hidden="true"><span><i></i>Sobra</span><span><i class="negative"></i>Falta</span></div>
+  </article>
+  <div class="summary-band actual-band"><strong id="actual-band-title">REALIZADO</strong><span id="actual-band-period">—</span></div>
+  <article class="summary-card revenue actual-card"><small>RECEITA</small><strong class="summary-value" id="actual-revenue">—</strong></article>
+  <article class="summary-card expense actual-card"><small>DESPESA</small><strong class="summary-value" id="actual-expense">—</strong></article>
+  <article class="summary-card result actual-card"><small>RESULTADO</small><strong class="summary-value" id="actual-result">—</strong></article>
+  <p class="summary-note" id="actual-summary-note">Dados referentes até —.</p>
+</section>
+<div class="legend"><span><i class="actual-key"></i> Realizado editável</span><span><i class="forecast-key"></i> Projetado conforme período</span><span><i class="manual-key"></i> Edição manual</span><span>Variação positiva indica Realizado acima do Projetado · valores em R$</span></div><div class="table-scroll budget-table-wrap" tabindex="0" aria-label="Orçamento mensal; role horizontalmente"><table class="budget-table"><thead id="budget-head"></thead><tbody id="budget-body"></tbody></table></div><p id="table-count" class="table-count"></p></section>
+<section id="indices-view" role="tabpanel" aria-labelledby="indices-tab" class="analysis" hidden><div class="section-heading"><h2>Índices econômicos</h2><div class="export-actions"><button id="import-variables" type="button" class="secondary-button">Importar índices JSON</button><input id="variables-input" type="file" accept=".json" hidden><button id="export-variables" type="button" class="secondary-button">Exportar índices JSON</button></div></div><div class="variable-layout">
+<form id="variable-form" class="variable-form"><h3>Novo índice econômico</h3><div class="form-grid"><label class="wide">Nome<input id="variable-name" required maxlength="80"></label><label>Taxa (%)<input id="variable-rate" type="number" required min="-99.99" step="any"></label><label>Aplicação<select id="variable-cadence"><option value="monthly">Mês a mês</option><option value="annual">Ano a ano</option></select></label><label>Início<input id="variable-start" type="month" required></label><label>Fim<input id="variable-end" type="month" required></label><label>Afeta<select id="variable-scope"><option value="all">Todo o orçamento</option><option value="group">Receita ou despesa</option><option value="sector">Um setor</option><option value="account">Uma conta</option></select></label><label id="target-field" class="wide" hidden>Alvo<select id="variable-target"></select></label></div><p class="form-note">Novos índices afetam apenas a projeção dinâmica após definir o intervalo fixo.</p><button class="primary-button" type="submit">Adicionar índice econômico</button></form>
+<div class="variables-panel"><div class="panel-title"><h3>Índices do cenário</h3><span id="variables-count">0 cadastradas</span></div><p id="variables-empty" class="empty-state">Nenhum índice. Cálculo padrão já aplicado.</p><div id="variables-table-wrap" class="table-scroll compact" hidden><table><thead><tr><th>Nome</th><th>Taxa</th><th>Ritmo</th><th>Vigência</th><th>Alcance</th><th>Ações</th></tr></thead><tbody id="variables-body"></tbody></table></div></div></div></section>
+<section id="organogram-view" role="tabpanel" aria-labelledby="organogram-tab" class="analysis" hidden>
+  <div class="section-heading"><div><h2>Organograma Orçamentário</h2><p>Valores realizados por setor. O padrão AGE divide os valores igualmente entre 24 setores.</p></div><div class="export-actions"><button id="default-organogram" type="button" class="secondary-button">Usar organograma padrão AGE</button><button id="import-organogram" type="button" class="secondary-button">Importar organograma JSON</button><input id="organogram-input" type="file" accept=".json" hidden><button id="export-organogram" type="button" class="secondary-button">Salvar organograma JSON</button></div></div>
+  <div class="toolbar"><label>Ano<select id="organogram-year"></select></label><label>Período<select id="organogram-month"></select></label><label>Visualizar<select id="organogram-group"><option value="Despesa">Despesas</option><option value="Receita">Receitas</option></select></label></div>
+  <div class="expense-overview"><div class="expense-chart"><h3 id="expense-title">Despesas por setor</h3><strong id="expense-total"></strong><svg id="expense-pie" viewBox="0 0 320 320" role="group" aria-label="Distribuição dos valores próprios por setor"></svg><p id="expense-credit" class="form-note"></p></div><ol id="expense-ranking" aria-label="Setores pelo valor próprio, do maior para o menor"></ol></div>
+  <div class="hierarchy-heading"><h3>Hierarquia da empresa</h3><button id="capture-organogram" type="button" class="secondary-button" title="Salvar a hierarquia exibida em PNG"><svg class="icon" aria-hidden="true"><use href="images/icons.svg#download"></use></svg>Tirar foto PNG</button></div><p class="form-note">Valores próprios e dos subordinados. Selecione um setor para editar seus vínculos.</p><div class="sector-bar-legend" aria-label="Legenda das barras da hierarquia"><span><i class="legend-revenue-direct" aria-hidden="true"></i>Receita direta</span><span><i class="legend-revenue-indirect" aria-hidden="true"></i>Receita indireta</span><span><i class="legend-expense-direct" aria-hidden="true"></i>Despesa direta</span><span><i class="legend-expense-indirect" aria-hidden="true"></i>Despesa indireta</span></div><div id="sector-tree" class="sector-tree" tabindex="0" aria-label="Hierarquia visual dos setores; role se necessário"></div><div id="sector-tooltip" class="sector-tooltip" role="status" aria-live="polite" hidden></div>
+  <details id="organogram-editor" class="organogram-details"><summary>Configurar setores e distribuição</summary>
+  <div class="variable-layout">
+    <div class="sector-editor">
+      <form id="box-form" class="variable-form">
+        <h3>1. Defina o setor administrativo</h3><p class="form-note">Cadastre o setor e depois, se necessário, o superior.</p>
+        <div class="form-grid"><label class="wide">Criar ou editar<select id="box-selection"></select></label><label class="wide">Nome do setor<input id="box-name" required maxlength="120" placeholder="Ex.: Gerência de Pequenos Negócios"></label><label class="wide">Setores superiores existentes (opcional)<select id="box-parent" multiple size="4" aria-describedby="box-parent-help"></select><small id="box-parent-help">Selecione um ou mais setores. Nenhum setor selecionado cria uma raiz.</small></label></div>
+        <div class="export-actions"><button type="submit" class="primary-button">Salvar setor</button><button id="delete-box" type="button" class="secondary-button" disabled>Remover setor</button></div>
+      </form>
+      <div class="superior-editor"><h3>2. Crie a superior deste setor</h3><p class="form-note">O novo superior recebe o setor selecionado como subordinado.</p><label for="superior-name">Nome do novo setor superior</label><input id="superior-name" maxlength="120" placeholder="Ex.: Superintendência de Pequenos Negócios" disabled><button id="create-superior" type="button" class="secondary-button" disabled>Criar superior deste setor</button></div>
+    </div>
+      <form id="link-form" class="variable-form"><h3>Atribua os valores realizados</h3><div class="form-grid"><label>Tipo de origem<select id="origin-type"><option value="account">Conta da base</option><option value="sector">Setor da base inteiro</option></select></label><label class="wide">Pesquisar origem<input id="origin-search" type="search" placeholder="Código, descrição ou grupo"></label><label class="wide">Origem financeira<select id="link-origin" required></select></label><div class="wide origin-value"><span>Valor realizado no período exibido</span><strong id="link-origin-value">—</strong></div><label class="wide">Vincular ao setor administrativo<select id="link-box" required aria-describedby="selected-sector-note"></select></label><label>Percentual (%)<input id="link-percent" type="number" min="0" step="0.01" value="100.00" required></label></div><p id="selected-sector-note" class="form-note" aria-live="polite">Selecione um setor no organograma ou nesta lista.</p><p class="form-note">Setores da base agrupam contas financeiras. Setores administrativos formam a hierarquia da empresa.</p><button id="add-link" class="primary-button" type="submit">Adicionar vínculo</button><details class="link-list" aria-live="polite"><summary>Vínculos deste setor</summary><p id="link-empty" class="form-note">Nenhum vínculo neste setor.</p><ul id="link-list" class="link-list-items"></ul></details></form>
+  </div>
+  </details><section class="link-search-panel" aria-labelledby="link-search-title"><div><h3 id="link-search-title">Buscar receita ou despesa vinculada</h3><p class="form-note">Busque por código, descrição, grupo ou setor da base.</p></div><label for="link-search">Buscar vínculo<input id="link-search" type="search" placeholder="Código, descrição, grupo ou setor"></label><ul id="link-search-results" class="link-search-results"></ul></section><details class="allocation-alert"><summary id="allocation-summary"></summary><ul id="allocation-list"></ul></details><p id="organogram-empty" class="empty-state">Crie o primeiro setor operacional. Depois, crie seu setor superior.</p><details id="organogram-detail" class="organogram-details"><summary>Detalhes mensais e edição dos vínculos</summary><div class="table-scroll organogram-table-wrap" tabindex="0" aria-label="Valores mensais do organograma; role horizontalmente"><table class="organogram-table"><thead id="organogram-head"></thead><tbody id="organogram-body"></tbody></table></div></details>
+  <dialog id="link-dialog" class="link-dialog" aria-labelledby="link-dialog-title"><div class="link-dialog-header"><h3 id="link-dialog-title">Vínculos</h3><button id="close-link-dialog" type="button" class="secondary-button" aria-label="Fechar detalhes dos vínculos">Fechar</button></div><div id="link-dialog-body"></div></dialog>
+</section>
+<section class="export-panel"><div><p class="section-number">04 / SAÍDA</p><h2>Salvar e exportar</h2><p>Excel com orçamento, índices, organograma e despesas por setor com percentuais.</p><p id="export-validation" role="status"></p></div><div class="export-actions"><button id="save-project" class="secondary-button" type="button">Salvar planejamento</button><button id="export-xlsx" class="primary-button" type="button">Exportar Excel ↓</button></div></section>
+</div></main>
+<footer class="site-footer"><div class="footer-main"><div class="footer-brand"><img src="images/cropped-Logo-AGE_negativa-horizontal-e1718029628340-300x86.png" alt="AGE — Agência de Empreendedorismo de Pernambuco" width="300" height="86"><p><strong>POU</strong><span>Planejador Orçamentário Universal</span></p></div><section class="footer-column" aria-labelledby="footer-service-title"><h2 id="footer-service-title">Atendimento</h2><address>Rua do Apolo, 81<br>Bairro do Recife · Recife, PE<br>CEP 50030-220</address><p>Segunda a sexta-feira<br>8h às 12h · 13h às 17h</p></section><section class="footer-column" aria-labelledby="footer-contact-title"><h2 id="footer-contact-title">Fale com a AGE</h2><ul><li><a href="mailto:age@age.pe.gov.br">age@age.pe.gov.br</a></li><li><a href="tel:08000818081">SAC · 0800 081 8081</a></li><li><a href="tel:08000817450">Ouvidoria · 0800 081 7450</a></li><li><a href="https://wa.me/5581999121152" target="_blank" rel="noopener noreferrer">WhatsApp · (81) 99912-1152</a></li><li><a href="mailto:ouvidoria@age.pe.gov.br">ouvidoria@age.pe.gov.br</a></li></ul></section></div><div class="footer-bar"><span>© 2026 Agência de Empreendedorismo de Pernambuco. Todos os direitos reservados.</span><span>Sistema de Planejamento Orçamentário, desenvolvido por Gabriel Aguiar.</span><a class="docs-link" href="docs/index.html">Documentação técnica</a></div></footer>
+<script src="scripts/vendor/jszip.min.js"></script><script src="scripts/app.bundle.js"></script></body></html>

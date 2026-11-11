@@ -1,0 +1,25 @@
+{
+  "reference": "https://age.pe.gov.br/",
+  "logo": "cropped-Logo-AGE_negativa-horizontal-e1718029628340-300x86.png",
+  "downloads": [
+    { "file": "age-fav-icon.svg", "url": "https://age.pe.gov.br/wp-content/uploads/2024/05/age-fav-icon.svg" },
+    { "file": "Manrope-Variable.ttf", "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/Manrope%5Bwght%5D.ttf" },
+    { "file": "Manrope-OFL.txt", "url": "https://raw.githubusercontent.com/google/fonts/main/ofl/manrope/OFL.txt" },
+    { "file": "Lucide-LICENSE.txt", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/LICENSE" },
+    { "file": "icons/upload.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/upload.svg" },
+    { "file": "icons/git-compare-arrows.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/git-compare-arrows.svg" },
+    { "file": "icons/chart-no-axes-combined.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/chart-no-axes-combined.svg" },
+    { "file": "icons/calendar-days.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/calendar-days.svg" },
+    { "file": "icons/sliders-horizontal.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/sliders-horizontal.svg" },
+    { "file": "icons/file-spreadsheet.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/file-spreadsheet.svg" },
+    { "file": "icons/download.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/download.svg" },
+    { "file": "icons/circle-help.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/circle-question-mark.svg" },
+    { "file": "icons/shield-check.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/shield-check.svg" },
+    { "file": "icons/circle-alert.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/circle-alert.svg" },
+    { "file": "icons/book-open.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/book-open.svg" },
+    { "file": "icons/check.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/check.svg" },
+    { "file": "icons/x.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/x.svg" },
+    { "file": "icons/arrow-right.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/arrow-right.svg" },
+    { "file": "icons/info.svg", "url": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/info.svg" }
+  ]
+}

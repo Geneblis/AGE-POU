@@ -1,0 +1,11 @@
+{
+  "name": "planejador-orcamentario",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node scripts/server.mjs",
+    "build": "node scripts/build.mjs && node scripts/build-docs.mjs",
+    "docs": "node scripts/build-docs.mjs",
+    "test": "node --test"
+  }
+}

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="590" viewBox="0 0 800 590" role="img" aria-labelledby="title desc">
+  <title id="title">Da planilha às contas</title>
+  <desc id="desc">Oito etapas sequenciais agrupadas em três fases: validar a base, montar as contas e conciliar e ordenar.</desc>
+  <defs>
+    <marker id="arrow" markerWidth="8" markerHeight="8" refX="4" refY="4" orient="auto"><path d="M0 0 L8 4 L0 8" fill="#94a3b8"/></marker>
+  </defs>
+  <rect width="800" height="590" rx="16" fill="#121725"/>
+  <g font-family="Segoe UI, Arial, sans-serif">
+    <text x="32" y="39" font-size="16" font-weight="600" fill="#afb8d5">PLANILHA IMPORTADA → CONTAS PRONTAS PARA PROJETAR</text>
+    <rect x="24" y="60" width="752" height="154" rx="12" fill="#17233b" stroke="#385a89"/>
+    <circle cx="56" cy="94" r="18" fill="#1d4ed8"/>
+    <text x="56" y="101" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">1</text>
+    <text x="88" y="101" font-size="23" font-weight="700" fill="#a5c8ff">Validar a base</text>
+    <g font-size="19" fill="#e2e8f0">
+      <text x="88" y="133">1. Limpar linhas: códigos 7 ou 8, com 10 ou 14 dígitos.</text>
+      <text x="88" y="163">2. Conferir meses: ano anterior completo e janeiro a junho.</text>
+      <text x="88" y="193">3. Achar o último mês com totais de Receita e Despesa.</text>
+    </g>
+    <path d="M400 220 V242" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="24" y="252" width="752" height="154" rx="12" fill="#132b2d" stroke="#2b6563"/>
+    <circle cx="56" cy="286" r="18" fill="#0f766e"/>
+    <text x="56" y="293" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">2</text>
+    <text x="88" y="293" font-size="23" font-weight="700" fill="#83e2d5">Montar as contas</text>
+    <g font-size="19" fill="#e2e8f0">
+      <text x="88" y="325">4. Ler os setores informados na planilha.</text>
+      <text x="88" y="355">5. Ler as contas analíticas: códigos de 14 dígitos.</text>
+      <text x="88" y="385">6. Escolher o setor pelo prefixo ou pela posição na base.</text>
+    </g>
+    <path d="M400 412 V434" stroke="#94a3b8" stroke-width="2" marker-end="url(#arrow)"/>
+    <rect x="24" y="444" width="752" height="124" rx="12" fill="#281e38" stroke="#62457f"/>
+    <circle cx="56" cy="478" r="18" fill="#7e22ce"/>
+    <text x="56" y="485" text-anchor="middle" font-size="20" font-weight="700" fill="#ffffff">3</text>
+    <text x="88" y="485" font-size="23" font-weight="700" fill="#d8b4fe">Conciliar e ordenar</text>
+    <g font-size="19" fill="#e2e8f0">
+      <text x="88" y="517">7. Criar ajustes para fechar os totais da planilha.</text>
+      <text x="88" y="547">8. Ordenar: Receita primeiro, depois setor e linha de origem.</text>
+    </g>
+  </g>
+</svg>
