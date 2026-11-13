@@ -2,6 +2,11 @@
 
 Registro de mudanças, da mais nova para a mais antiga.
 
+## 13/11/2026 — CPL e Ouvidoria sob a Presidência
+
+- Corrigido o padrão AGE: CPL e Ouvidoria são filhos diretos da Presidência. CONAD, CONFI, Auditoria e Comissão PAD continuam independentes, no mesmo nível da Presidência.
+- Documentação, árvores, guias de LLM e Central de ajuda alinhados à correção, preservando os 25 setores, seus IDs e a distribuição de 4% por setor.
+
 ## 11/11/2026 — Organograma unificado
 
 - Padrão AGE com 25 setores: CONAD, CONFI, Auditoria, CPL, PAD, Ouvidoria e Presidência sem superior; Assembleia Geral excluída e uma única Gerência de Pequenos Negócios.

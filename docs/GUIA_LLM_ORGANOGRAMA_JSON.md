@@ -69,17 +69,17 @@ Cada item cria um setor administrativo.
 
 ## Hierarquia padrão AGE
 
-Use esta hierarquia somente quando o usuário escolher explicitamente o padrão AGE. A tabela é a fonte canônica, de cima para baixo. Ela já incorpora as correções confirmadas do organograma: Assembleia Geral não entra; os seis órgãos independentes e a Presidência não têm superior. Linhas de ligação da imagem não mudam estas relações:
+Use esta hierarquia somente quando o usuário escolher explicitamente o padrão AGE. A tabela é a fonte canônica, de cima para baixo. Ela já incorpora as correções confirmadas do organograma: Assembleia Geral não entra; CONAD, CONFI, Gerência de Auditoria Interna, Comissão PAD e Presidência não têm superior; CPL e Ouvidoria são filhos diretos da Presidência. Linhas de ligação da imagem não mudam estas relações:
 
 | `id` | Setor administrativo | `parent` principal | `parents` quando múltiplo |
 | --- | --- | --- | --- |
 | `conad` | CONAD (Conselho de Administração) | `null` | — |
 | `confin` | CONFI (Conselho Fiscal) | `null` | — |
 | `auditoria` | Gerência de Auditoria Interna | `null` | — |
-| `cpl` | CPL | `null` | — |
 | `pad` | Comissão PAD | `null` | — |
-| `ouvidoria` | Ouvidoria | `null` | — |
 | `presidencia` | Presidência - PRESI | `null` | — |
+| `cpl` | CPL | `presidencia` | — |
+| `ouvidoria` | Ouvidoria | `presidencia` | — |
 | `juridica` | Superintendência Jurídica | `presidencia` | — |
 | `comunicacao` | Gerência de Comunicação | `presidencia` | — |
 | `compliance` | Gerência de Compliance e Controles Internos | `presidencia` | — |
@@ -99,17 +99,17 @@ Use esta hierarquia somente quando o usuário escolher explicitamente o padrão 
 | `sup-cc` | Superintendência de Crédito e Cobrança | `dfin` | — |
 | `ger-cc` | Gerência de Crédito e Cobrança | `sup-cc` | — |
 
-CONAD, CONFI, Gerência de Auditoria Interna, CPL, Comissão PAD e Ouvidoria são raízes independentes, no mesmo nível da Presidência. Use `parent: null` e omita `parents` nas raízes. Apontar um setor para o próprio ID cria um ciclo inválido. A Gerência de Pequenos Negócios aparece uma única vez, sob a Superintendência de Pequenos Negócios.
+CONAD, CONFI, Gerência de Auditoria Interna e Comissão PAD são raízes independentes, no mesmo nível da Presidência. CPL e Ouvidoria são filhos diretos da Presidência. Use `parent: null` e omita `parents` nas raízes. Apontar um setor para o próprio ID cria um ciclo inválido. A Gerência de Pequenos Negócios aparece uma única vez, sob a Superintendência de Pequenos Negócios.
 
-O ID estável `confin` identifica o **CONFI (Conselho Fiscal)**; use o nome da tabela. Não crie outro setor `confi`. Não inclua Assembleia Geral nem comissões adicionais. Nunca coloque `conad`, `confin`, `auditoria`, `cpl`, `pad` ou `ouvidoria` como filhos da Presidência no padrão AGE.
+O ID estável `confin` identifica o **CONFI (Conselho Fiscal)**; use o nome da tabela. Não crie outro setor `confi`. Não inclua Assembleia Geral nem comissões adicionais. Nunca coloque `conad`, `confin`, `auditoria` ou `pad` como filhos da Presidência no padrão AGE. Para `cpl` e `ouvidoria`, use `parent: "presidencia"`.
 
 ### Organograma aplicado pelo botão padrão
 
 Quando o usuário escolhe **Usar organograma padrão AGE**, o POU:
 
 - cria exatamente os 25 `boxes` da tabela acima;
-- mantém `conad`, `confin`, `auditoria`, `cpl`, `pad`, `ouvidoria` e `presidencia` como raízes no mesmo nível;
-- mantém `dpg` como filho direto de `presidencia`;
+- mantém `conad`, `confin`, `auditoria`, `pad` e `presidencia` como raízes no mesmo nível;
+- mantém `cpl`, `ouvidoria` e `dpg` como filhos diretos de `presidencia`;
 - cria um vínculo `type: "sector"` para cada setor financeiro existente na planilha, em cada um dos 25 setores administrativos;
 - usa `percent: 100 / 25` em cada vínculo, sem arredondar a regra no cálculo.
 
@@ -121,11 +121,11 @@ O setor financeiro da planilha (`origin`, por exemplo `818`) não é setor admin
 CONAD (Conselho de Administração)
 CONFI (Conselho Fiscal)
 Gerência de Auditoria Interna
-CPL
 Comissão PAD
-Ouvidoria
 
 Presidência - PRESI
+    ├── CPL
+    ├── Ouvidoria
     ├── Superintendência Jurídica
     ├── Gerência de Comunicação
     ├── Gerência de Compliance e Controles Internos
@@ -206,5 +206,5 @@ Use somente códigos presentes na planilha que estará aberta no POU.
 6. Copie códigos `origin` exatamente da planilha fornecida.
 7. Comprove que cada conta e ajuste fecha em 100% com arredondamento para duas casas, considerando vínculos por conta e por setor da base.
 8. Confirme que não existe sobreposição involuntária entre `sector` e `account`.
-9. Se padrão AGE foi escolhido, confirme 25 setores, raízes `conad`, `confin`, `auditoria`, `cpl`, `pad`, `ouvidoria` e `presidencia`, `dpg` como filho direto de `presidencia` e uma única `ger-pn` sob `sup-pn`.
+9. Se padrão AGE foi escolhido, confirme 25 setores, raízes `conad`, `confin`, `auditoria`, `pad` e `presidencia`, `cpl`, `ouvidoria` e `dpg` como filhos diretos de `presidencia` e uma única `ger-pn` sob `sup-pn`.
 10. Depois da confirmação, retorne apenas JSON válido quando solicitado a gerar o arquivo.

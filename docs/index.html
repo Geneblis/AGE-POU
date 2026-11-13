@@ -132,15 +132,15 @@ documentação</span></a>
 <h3 id="doc-readme-md-8ec9a0--monte-o-organograma">5. Monte o organograma</h3>
 <p>Na aba <strong>Organograma Orçamentário</strong>, você diz qual parte da empresa fica com cada receita e despesa.</p>
 <p><strong>Jeito rápido:</strong> clique em <strong>Usar organograma padrão AGE</strong>. O site cria os 25 setores da empresa e divide tudo igualmente: cada setor fica com 100 ÷ 25 = 4% de cada receita e despesa.</p>
-<p>CONAD, CONFI, Gerência de Auditoria Interna, CPL, Comissão PAD e Ouvidoria são raízes independentes, no mesmo nível da Presidência. A Ouvidoria e a Comissão PAD não têm superior. A Gerência de Pequenos Negócios aparece uma vez, sob sua superintendência.</p>
+<p>CONAD, CONFI, Gerência de Auditoria Interna e Comissão PAD são raízes independentes, no mesmo nível da Presidência. CPL e Ouvidoria são filhos diretos da Presidência. A Comissão PAD não tem superior. A Gerência de Pequenos Negócios aparece uma vez, sob sua superintendência.</p>
 <pre class="text"><code>CONAD (Conselho de Administração)
 CONFI (Conselho Fiscal)
 Gerência de Auditoria Interna
-CPL
 Comissão PAD
-Ouvidoria
 
 Presidência - PRESI
+    ├── CPL
+    ├── Ouvidoria
     ├── Superintendência Jurídica
     ├── Gerência de Comunicação
     ├── Gerência de Compliance e Controles Internos
@@ -307,6 +307,11 @@ Presidência - PRESI
 </article>
 <article id="doc-backlog-md-eafc98" class="doc-page" data-title="Backlog" hidden><h1 id="doc-backlog-md-eafc98--backlog">Backlog</h1>
 <p>Registro de mudanças, da mais nova para a mais antiga.</p>
+<h2 id="doc-backlog-md-eafc98--cpl-e-ouvidoria-sob-a-presidência">13/11/2026 — CPL e Ouvidoria sob a Presidência</h2>
+<ul>
+<li>Corrigido o padrão AGE: CPL e Ouvidoria são filhos diretos da Presidência. CONAD, CONFI, Auditoria e Comissão PAD continuam independentes, no mesmo nível da Presidência.</li>
+<li>Documentação, árvores, guias de LLM e Central de ajuda alinhados à correção, preservando os 25 setores, seus IDs e a distribuição de 4% por setor.</li>
+</ul>
 <h2 id="doc-backlog-md-eafc98--organograma-unificado">11/11/2026 — Organograma unificado</h2>
 <ul>
 <li>Padrão AGE com 25 setores: CONAD, CONFI, Auditoria, CPL, PAD, Ouvidoria e Presidência sem superior; Assembleia Geral excluída e uma única Gerência de Pequenos Negócios.</li>
@@ -1309,7 +1314,7 @@ Descreve setores, distribuição de contas e consolidação dos valores.
 </tbody>
 </table>
 <p>O formato completo está no comentário do topo de <a href="../scripts/models/organogram.js">organogram.js</a>.</p>
-<p><strong>Organograma padrão AGE:</strong> 25 setores fixos. CONAD, CONFI, Gerência de Auditoria Interna, CPL, Comissão PAD e Ouvidoria são raízes independentes, no mesmo nível da Presidência. DIPLAG é filha direta da Presidência. A Gerência de Pequenos Negócios aparece uma única vez, sob sua superintendência (<a href="../scripts/models/organogram.js">organogram.js</a>). Cada setor recebe <code>100 ÷ 25</code> de cada setor da base (<a href="../scripts/models/organogram.js">organogram.js</a>). Os seis setores independentes entram no total geral e ficam fora do consolidado da Presidência. A divisão padrão é exata: 4% por setor.</p>
+<p><strong>Organograma padrão AGE:</strong> 25 setores fixos. CONAD, CONFI, Gerência de Auditoria Interna e Comissão PAD são raízes independentes, no mesmo nível da Presidência. CPL e Ouvidoria são filhos diretos da Presidência. DIPLAG é filha direta da Presidência. A Gerência de Pequenos Negócios aparece uma única vez, sob sua superintendência (<a href="../scripts/models/organogram.js">organogram.js</a>). Cada setor recebe <code>100 ÷ 25</code> de cada setor da base (<a href="../scripts/models/organogram.js">organogram.js</a>). Os quatro setores independentes entram no total geral e ficam fora do consolidado da Presidência. CPL e Ouvidoria entram no consolidado da Presidência. A divisão padrão é exata: 4% por setor.</p>
 <p><code>addSuperior</code> cria um setor acima de outro. Se o filho tinha um único superior, o novo setor fica entre os dois: herda o superior antigo e passa a ser o superior direto do filho. Se o filho já tinha vários superiores, o novo é acrescentado e as ligações diretas anteriores são preservadas. Se o filho era raiz, passa a ficar abaixo do novo setor. Assim, a hierarquia pode ser montada de baixo para cima (<a href="../scripts/models/organogram.js">organogram.js</a>).</p>
 <p>Sources: <a href="../scripts/models/organogram.js">organogram.js</a></p>
 <hr />
@@ -1912,7 +1917,7 @@ Reúne verificações, orientações de mudança e manutenção da documentaçã
 </tr>
 <tr>
 <td><code>organogram.test.js</code></td>
-<td>Sete raízes independentes, nomes repetidos e paridade entre guia, botão padrão e Excel</td>
+<td>Cinco raízes, CPL e Ouvidoria como filhos diretos da Presidência, nomes repetidos e paridade entre guia, botão padrão e Excel</td>
 </tr>
 <tr>
 <td><code>budget-validation.test.js</code></td>
@@ -2174,15 +2179,15 @@ Reúne verificações, orientações de mudança e manutenção da documentaçã
 <p>POU valida <code>sector</code> e <code>account</code> contra planilha aberta. Não invente códigos. Use somente códigos enviados pelo usuário ou extraídos da base.</p>
 <p>O alcance <code>sector</code> usa o <strong>setor financeiro da planilha</strong>, não a hierarquia administrativa do Organograma. Índices não possuem relação <code>parent</code> nem herdam alcance de setores superiores do Organograma.</p>
 <h2 id="doc-guia-llm-indices-json-md-f2f10f--relação-com-a-nova-hierarquia-da-empresa">Relação com a nova hierarquia da empresa</h2>
-<p>O Organograma padrão AGE possui 25 setores administrativos. CONAD, CONFI, Gerência de Auditoria Interna, CPL, Comissão PAD e Ouvidoria são raízes independentes, no mesmo nível da Presidência. <strong>DIPLAG</strong> é filha direta da Presidência. Ele inclui DIROP, DIRFI e suas gerências e superintendências conforme a hierarquia canônica do <a href="#doc-guia-llm-organograma-json-md-195a44">guia de Organograma</a>.</p>
+<p>O Organograma padrão AGE possui 25 setores administrativos. CONAD, CONFI, Gerência de Auditoria Interna e Comissão PAD são raízes independentes, no mesmo nível da Presidência. CPL e Ouvidoria são filhos diretos da Presidência. <strong>DIPLAG</strong> é filha direta da Presidência. Ele inclui DIROP, DIRFI e suas gerências e superintendências conforme a hierarquia canônica do <a href="#doc-guia-llm-organograma-json-md-195a44">guia de Organograma</a>.</p>
 <p>Resumo hierárquico para conferência (os índices não recebem estes IDs):</p>
 <pre class="text"><code>CONAD (raiz)
 CONFI (raiz)
 Gerência de Auditoria Interna (raiz)
-CPL (raiz)
 Comissão PAD (raiz)
-Ouvidoria (raiz)
 Presidência - PRESI (raiz)
+├── CPL
+├── Ouvidoria
 └── DIPLAG
     ├── Gerência Administrativa
     ├── Gerência de Planejamento de Dados, Mercado e Orçamento
@@ -2292,7 +2297,7 @@ Secretaria de Governança, DIROP e DIRFI; consulte o guia de Organograma para a 
 <li>Um setor alcançado por dois caminhos é consolidado uma única vez; a relação extra não duplica receita ou despesa.</li>
 </ul>
 <h2 id="doc-guia-llm-organograma-json-md-195a44--hierarquia-padrão-age">Hierarquia padrão AGE</h2>
-<p>Use esta hierarquia somente quando o usuário escolher explicitamente o padrão AGE. A tabela é a fonte canônica, de cima para baixo. Ela já incorpora as correções confirmadas do organograma: Assembleia Geral não entra; os seis órgãos independentes e a Presidência não têm superior. Linhas de ligação da imagem não mudam estas relações:</p>
+<p>Use esta hierarquia somente quando o usuário escolher explicitamente o padrão AGE. A tabela é a fonte canônica, de cima para baixo. Ela já incorpora as correções confirmadas do organograma: Assembleia Geral não entra; CONAD, CONFI, Gerência de Auditoria Interna, Comissão PAD e Presidência não têm superior; CPL e Ouvidoria são filhos diretos da Presidência. Linhas de ligação da imagem não mudam estas relações:</p>
 <table>
 <colgroup>
 <col style="width: 25%" />
@@ -2328,20 +2333,8 @@ Secretaria de Governança, DIROP e DIRFI; consulte o guia de Organograma para a 
 <td>—</td>
 </tr>
 <tr>
-<td><code>cpl</code></td>
-<td>CPL</td>
-<td><code>null</code></td>
-<td>—</td>
-</tr>
-<tr>
 <td><code>pad</code></td>
 <td>Comissão PAD</td>
-<td><code>null</code></td>
-<td>—</td>
-</tr>
-<tr>
-<td><code>ouvidoria</code></td>
-<td>Ouvidoria</td>
 <td><code>null</code></td>
 <td>—</td>
 </tr>
@@ -2349,6 +2342,18 @@ Secretaria de Governança, DIROP e DIRFI; consulte o guia de Organograma para a 
 <td><code>presidencia</code></td>
 <td>Presidência - PRESI</td>
 <td><code>null</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>cpl</code></td>
+<td>CPL</td>
+<td><code>presidencia</code></td>
+<td>—</td>
+</tr>
+<tr>
+<td><code>ouvidoria</code></td>
+<td>Ouvidoria</td>
+<td><code>presidencia</code></td>
 <td>—</td>
 </tr>
 <tr>
@@ -2461,14 +2466,14 @@ Secretaria de Governança, DIROP e DIRFI; consulte o guia de Organograma para a 
 </tr>
 </tbody>
 </table>
-<p>CONAD, CONFI, Gerência de Auditoria Interna, CPL, Comissão PAD e Ouvidoria são raízes independentes, no mesmo nível da Presidência. Use <code>parent: null</code> e omita <code>parents</code> nas raízes. Apontar um setor para o próprio ID cria um ciclo inválido. A Gerência de Pequenos Negócios aparece uma única vez, sob a Superintendência de Pequenos Negócios.</p>
-<p>O ID estável <code>confin</code> identifica o <strong>CONFI (Conselho Fiscal)</strong>; use o nome da tabela. Não crie outro setor <code>confi</code>. Não inclua Assembleia Geral nem comissões adicionais. Nunca coloque <code>conad</code>, <code>confin</code>, <code>auditoria</code>, <code>cpl</code>, <code>pad</code> ou <code>ouvidoria</code> como filhos da Presidência no padrão AGE.</p>
+<p>CONAD, CONFI, Gerência de Auditoria Interna e Comissão PAD são raízes independentes, no mesmo nível da Presidência. CPL e Ouvidoria são filhos diretos da Presidência. Use <code>parent: null</code> e omita <code>parents</code> nas raízes. Apontar um setor para o próprio ID cria um ciclo inválido. A Gerência de Pequenos Negócios aparece uma única vez, sob a Superintendência de Pequenos Negócios.</p>
+<p>O ID estável <code>confin</code> identifica o <strong>CONFI (Conselho Fiscal)</strong>; use o nome da tabela. Não crie outro setor <code>confi</code>. Não inclua Assembleia Geral nem comissões adicionais. Nunca coloque <code>conad</code>, <code>confin</code>, <code>auditoria</code> ou <code>pad</code> como filhos da Presidência no padrão AGE. Para <code>cpl</code> e <code>ouvidoria</code>, use <code>parent: "presidencia"</code>.</p>
 <h3 id="doc-guia-llm-organograma-json-md-195a44--organograma-aplicado-pelo-botão-padrão">Organograma aplicado pelo botão padrão</h3>
 <p>Quando o usuário escolhe <strong>Usar organograma padrão AGE</strong>, o POU:</p>
 <ul>
 <li>cria exatamente os 25 <code>boxes</code> da tabela acima;</li>
-<li>mantém <code>conad</code>, <code>confin</code>, <code>auditoria</code>, <code>cpl</code>, <code>pad</code>, <code>ouvidoria</code> e <code>presidencia</code> como raízes no mesmo nível;</li>
-<li>mantém <code>dpg</code> como filho direto de <code>presidencia</code>;</li>
+<li>mantém <code>conad</code>, <code>confin</code>, <code>auditoria</code>, <code>pad</code> e <code>presidencia</code> como raízes no mesmo nível;</li>
+<li>mantém <code>cpl</code>, <code>ouvidoria</code> e <code>dpg</code> como filhos diretos de <code>presidencia</code>;</li>
 <li>cria um vínculo <code>type: "sector"</code> para cada setor financeiro existente na planilha, em cada um dos 25 setores administrativos;</li>
 <li>usa <code>percent: 100 / 25</code> em cada vínculo, sem arredondar a regra no cálculo.</li>
 </ul>
@@ -2477,11 +2482,11 @@ Secretaria de Governança, DIROP e DIRFI; consulte o guia de Organograma para a 
 <pre class="text"><code>CONAD (Conselho de Administração)
 CONFI (Conselho Fiscal)
 Gerência de Auditoria Interna
-CPL
 Comissão PAD
-Ouvidoria
 
 Presidência - PRESI
+    ├── CPL
+    ├── Ouvidoria
     ├── Superintendência Jurídica
     ├── Gerência de Comunicação
     ├── Gerência de Compliance e Controles Internos
@@ -2546,7 +2551,7 @@ Presidência - PRESI
 <li>Copie códigos <code>origin</code> exatamente da planilha fornecida.</li>
 <li>Comprove que cada conta e ajuste fecha em 100% com arredondamento para duas casas, considerando vínculos por conta e por setor da base.</li>
 <li>Confirme que não existe sobreposição involuntária entre <code>sector</code> e <code>account</code>.</li>
-<li>Se padrão AGE foi escolhido, confirme 25 setores, raízes <code>conad</code>, <code>confin</code>, <code>auditoria</code>, <code>cpl</code>, <code>pad</code>, <code>ouvidoria</code> e <code>presidencia</code>, <code>dpg</code> como filho direto de <code>presidencia</code> e uma única <code>ger-pn</code> sob <code>sup-pn</code>.</li>
+<li>Se padrão AGE foi escolhido, confirme 25 setores, raízes <code>conad</code>, <code>confin</code>, <code>auditoria</code>, <code>pad</code> e <code>presidencia</code>, <code>cpl</code>, <code>ouvidoria</code> e <code>dpg</code> como filhos diretos de <code>presidencia</code> e uma única <code>ger-pn</code> sob <code>sup-pn</code>.</li>
 <li>Depois da confirmação, retorne apenas JSON válido quando solicitado a gerar o arquivo.</li>
 </ol>
 </article></main>
